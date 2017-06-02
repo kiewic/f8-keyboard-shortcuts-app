@@ -7,7 +7,7 @@
     var TileNotification = Windows.UI.Notifications.TileNotification;
     var TileUpdateManager = Windows.UI.Notifications.TileUpdateManager;
 
-    var tileId = "foo";
+    var tileId = new Date().toISOString().replace(/[-:\.]/g, '');
 
     function pinTile() {
         //var tile = new SecondaryTile(new Date().getTime());
@@ -16,6 +16,7 @@
         tile.displayName = "hello!";
         tile.visualElements.square150x150Logo = new Uri("ms-appx:///images/Square150x150Logo.png");
         tile.visualElements.wide310x150Logo = new Uri("ms-appx:///images/Wide310x150Logo.png");
+        tile.visualElements.square310x310Logo = new Uri("ms-appx:///images/Wide310x150Logo.png"); // TODO: Set a picture of the right size
         tile.visualElements.backgroundColor = Colors.purple;
         tile.visualElements.showNameOnSquare150x150Logo = true;
         tile.visualElements.showNameOnSquare310x310Logo = true;
@@ -28,87 +29,104 @@
         });
     }
 
-    function pinTile2() {
+    function createTileContent(appName, shorcutDescription, shortcutCommand) {
         var notifLib = Microsoft.Toolkit.Uwp.Notifications;
-
-        var tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
-
-        var adaptiveText1 = new notifLib.AdaptiveText();
-        adaptiveText1.text = "Hi";
-        adaptiveText1.hintStyle = notifLib.AdaptiveTextStyle.base;
-        adaptiveText1.hintAlign = notifLib.AdaptiveTextAlign.center;
-
-        var adaptiveText2 = new notifLib.AdaptiveText();
-        adaptiveText2.text = "Kiewic";
-        adaptiveText2.hintStyle = notifLib.AdaptiveTextStyle.captionSubtle;
-        adaptiveText2.hintAlign = notifLib.AdaptiveTextAlign.center;
-
-        tileBindingContentAdaptive.children.push(adaptiveText1);
-        tileBindingContentAdaptive.children.push(adaptiveText2);
+        var tileContent = new notifLib.TileContent();
+        var tileVisual = new notifLib.TileVisual();
 
         var tileBinding = new notifLib.TileBinding();
+        var tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
+        tileBindingContentAdaptive.textStacking = notifLib.TileTextStacking.bottom;
+
+        var adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Chrome Dev Tools";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Toggle breakpoint";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Ctrl + B";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.body;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
         tileBinding.content = tileBindingContentAdaptive;
-
-        //tileBinding.branding = notifLib.TileBranding.name;
-        //tileBinding.displayName = "Seattle";
-
-        //var adaptiveGroup = new notifLib.AdaptiveGroup();
-        //adaptiveGroup.children.push(CreateSubgroup("Mon", "Mostly Cloudy.png", "63°", "42°"));
-        //adaptiveGroup.children.push(CreateSubgroup("Tue", "Cloudy.png", "57°", "38°"));
-        //adaptiveGroup.children.push(CreateSubgroup("Wed", "Sunny.png", "59°", "43°"));
-        //adaptiveGroup.children.push(CreateSubgroup("Thu", "Sunny.png", "62°", "42°"));
-        //adaptiveGroup.children.push(CreateSubgroup("Fri", "Sunny.png", "71°", "66°"));
-
-        //tileBindingContentAdaptive.children.push(adaptiveGroup);
-
-
-        function CreateSubgroup(day, image, highTemp, lowTemp) {
-            var adaptiveSubgroup = new notifLib.AdaptiveSubgroup();
-            adaptiveSubgroup.hintWeight = 1;
-
-            var adaptiveText = new notifLib.AdaptiveText();
-            adaptiveText.text = day;
-            adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
-            adaptiveSubgroup.children.push(adaptiveText);
-
-            var adaptiveImage = new notifLib.AdaptiveImage();
-            adaptiveImage.hintRemoveMargin = true;
-            adaptiveImage.source = image;
-            adaptiveSubgroup.children.push(adaptiveImage);
-
-            adaptiveText = new notifLib.AdaptiveText();
-            adaptiveText.text = highTemp;
-            adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
-            adaptiveSubgroup.children.push(adaptiveText);
-
-            adaptiveText = new notifLib.AdaptiveText();
-            adaptiveText.text = lowTemp;
-            adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.captionSubtle;
-            adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
-            adaptiveSubgroup.children.push(adaptiveText);
-
-            return adaptiveSubgroup;
-        }
-
-        var tileVisual = new notifLib.TileVisual();
         tileVisual.tileMedium = tileBinding;
+
+        tileBinding = new notifLib.TileBinding();
+        tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
+        tileBindingContentAdaptive.textStacking = notifLib.TileTextStacking.bottom;
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Chrome Dev Tools";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Toggle breakpoint";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.base;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Ctrl + B";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.body;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        tileBinding.content = tileBindingContentAdaptive;
         tileVisual.tileWide = tileBinding;
+
+        tileBinding = new notifLib.TileBinding();
+        tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
+        tileBindingContentAdaptive.textStacking = notifLib.TileTextStacking.center;
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Chrome Dev Tools";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Toggle breakpoint";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.base;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = "Ctrl + B";
+        adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.title;
+        adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
+        tileBindingContentAdaptive.children.push(adaptiveText);
+
+        tileBinding.content = tileBindingContentAdaptive;
         tileVisual.tileLarge = tileBinding;
 
-        var tileContent = new notifLib.TileContent();
+        tileVisual.branding = notifLib.TileBranding.nameAndLogo;
         tileContent.visual = tileVisual;
+
+        return tileContent;
+    }
+
+    function pinTile2() {
+        var tileContent = createTileContent();
 
         var xml = tileContent.getXml();
         var tileNotification = new TileNotification(xml);
         var tileUpdater = TileUpdateManager.createTileUpdaterForSecondaryTile(tileId);
         tileUpdater.update(tileNotification);
-
     }
 
     $("#pinButton").click(function () {
         pinTile();
     });
-
 
     function drawSvg() {
         var multiplier = 2;
