@@ -1,0 +1,19 @@
+﻿{
+  "tiles": [
+    {
+      "app": "Chrome dev tools",
+      "desc": "Toggle breakpoint",
+      "shortcut": "CTRL + B"
+    },
+    {
+      "app": "VSCode",
+      "desc": "Go to next error",
+      "shortcut": "F8"
+    },
+    {
+      "app": "VSCode",
+      "desc": "Go to matching bracket",
+      "shortcut": "Ctrl + Shift + \\"
+    }
+  ]
+}
