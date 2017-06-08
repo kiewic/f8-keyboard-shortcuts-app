@@ -67,8 +67,12 @@
     <Content Include="images\StoreLogo.png" />
     <Content Include="images\Wide310x150Logo.scale-200.png" />
     <Content Include="js\jquery-3.2.1.js" />
+    <Content Include="js\lodash.core.js" />
     <Content Include="js\main.js" />
     <Content Include="css\default.css" />
+    <Content Include="js\persistedData.js" />
+    <Content Include="js\svgHelper.js" />
+    <Content Include="js\tileHelper.js" />
     <Content Include="packages.config" />
     <None Include="keyboard-shortcuts_TemporaryKey.pfx" />
   </ItemGroup>
