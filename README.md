@@ -1,4 +1,4 @@
-# Keyboard Shorcuts UW Apps
+# Keyboard Shorcuts UWP Apps
 
 Reference docs:
 
