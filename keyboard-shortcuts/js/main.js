@@ -8,15 +8,7 @@
         (new PersistedData()).save(configText).then(function () {
             var jsonConfig = JSON.parse(configText);
             if (jsonConfig && jsonConfig.tiles && Array.isArray(jsonConfig.tiles)) {
-                updateTiles(jsonConfig.tiles);
-            }
-        });
-    }
-
-    function updateTiles(tiles) {
-        tiles.forEach(function (tileJson) {
-            if (tileJson.shortcut) {
-                tileHelper.findTile(tileJson);
+                tileHelper.updateTiles(jsonConfig.tiles);
             }
         });
     }

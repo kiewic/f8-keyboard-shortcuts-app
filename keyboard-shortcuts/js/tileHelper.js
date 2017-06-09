@@ -7,15 +7,26 @@ function TileHelper() {
     var TileNotification = Windows.UI.Notifications.TileNotification;
     var TileUpdateManager = Windows.UI.Notifications.TileUpdateManager;
 
-    function findTile(tileJson) {
-        var tileId = getTileId(tileJson.shortcut);
-        SecondaryTile.findAllForPackageAsync().then(function (secondaryTileList) {
+    function updateTiles(tiles) {
+        if (!tiles || _.isEmpty(tiles)) {
+            return;
+        }
+
+        var tile = tiles.pop();
+        findTileAsync(tile).then(function() {
+            updateTiles(tiles);
+        });
+    }
+
+    function findTileAsync(tile) {
+        var tileId = getTileId(tile.shortcut);
+        return SecondaryTile.findAllForPackageAsync().then(function (secondaryTileList) {
             var result = _.find(secondaryTileList, function (tile) { return tile.tileId === tileId });
             if (!result) {
-                pinTile(tileId, tileJson);
+                return pinTileAsync(tileId, tile);
             }
             else {
-                updateTile(tileId, tileJson);
+                return updateTile(tileId, tile);
             }
         });
     }
@@ -24,7 +35,7 @@ function TileHelper() {
         return shortcut.replace(/[^a-z0-9]/ig, '').toLowerCase();
     }
 
-    function pinTile(tileId, tileJson) {
+    function pinTileAsync(tileId, tileInfo) {
         var tile = new SecondaryTile(tileId);
         tile.arguments = "args";
         tile.displayName = "keyboard shortcuts";
@@ -37,13 +48,14 @@ function TileHelper() {
         tile.visualElements.showNameOnWide310x150Logo = true;
 
         var asyncOp = tile.requestCreateAsync();
-        asyncOp.done(function () {
-            updateTile(tileId, tileJson);
+        asyncOp.then(function () {
+            return updateTile(tileId, tileInfo);
         });
+        return asyncOp;
     }
 
-    function updateTile(tileId, tileJson) {
-        var tileContent = createTileContent(tileJson);
+    function updateTile(tileId, tile) {
+        var tileContent = createTileContent(tile);
 
         var xml = tileContent.getXml();
         var tileNotification = new TileNotification(xml);
@@ -138,6 +150,6 @@ function TileHelper() {
     }
 
     return {
-        findTile: findTile,
+        updateTiles: updateTiles,
     }
 }
