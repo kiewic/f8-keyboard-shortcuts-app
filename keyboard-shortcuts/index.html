@@ -3,12 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <title>keyboard shorcuts</title>
+    <link rel="stylesheet" href="css/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     <link href="css/default.css" rel="stylesheet" />
 </head>
 <body>
-    <textarea id="configTextarea" style="width: 100%; height: 50%;">Loading ...</textarea>
+    <textarea id="configTextarea">Loading ...</textarea>
     <div>
-        <button id="updateButton">Update</button>
+        <button id="updateButton" class="pure-button pure-button-primary">Update tiles</button>
+        <span id="statusText"></span>
     </div>
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/lodash.core.js"></script>

@@ -3,3 +3,18 @@
   touch-action: manipulation;
   */
 }
+
+textarea {
+    font-family: Consolas;
+    margin: 20px;
+    width: calc(100% - 45px);
+    height: calc(100% - 130px);
+}
+
+div {
+    margin: 0px 20px;
+}
+
+div span {
+    vertical-align: middle;
+}

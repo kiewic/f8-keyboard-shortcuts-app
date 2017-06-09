@@ -1,6 +1,7 @@
 ﻿"use strict";
 
 function TileHelper() {
+    const defaultDisplayName = 'F8';
     var SecondaryTile = Windows.UI.StartScreen.SecondaryTile;
     var Uri = Windows.Foundation.Uri;
     var Colors = Windows.UI.Colors;
@@ -13,8 +14,8 @@ function TileHelper() {
         }
 
         var tile = tiles.pop();
-        findTileAsync(tile).then(function() {
-            updateTiles(tiles);
+        return findTileAsync(tile).then(function() {
+            return updateTiles(tiles);
         });
     }
 
@@ -88,7 +89,7 @@ function TileHelper() {
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         tileBinding.content = tileBindingContentAdaptive;
-        tileBinding.displayName = 'shortcuts';
+        tileBinding.displayName = defaultDisplayName;
 
         return tileBinding;
     }
@@ -118,7 +119,7 @@ function TileHelper() {
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         tileBinding.content = tileBindingContentAdaptive;
-        tileBinding.displayName = 'shortcuts';
+        tileBinding.displayName = defaultDisplayName;
 
         return tileBinding;
     }
@@ -148,7 +149,7 @@ function TileHelper() {
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         tileBinding.content = tileBindingContentAdaptive;
-        tileBinding.displayName = 'shortcuts';
+        tileBinding.displayName = defaultDisplayName;
 
         return tileBinding;
     }

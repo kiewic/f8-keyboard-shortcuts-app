@@ -4,11 +4,19 @@
     var tileHelper = new TileHelper();
 
     function saveTextarea() {
+        $('#statusText').text('');
         var configText = $('#configTextarea').val();
         (new PersistedData()).save(configText).then(function () {
-            var jsonConfig = JSON.parse(configText);
+            try {
+                var jsonConfig = JSON.parse(configText);
+            }
+            catch (ex) {
+                $('#statusText').text(ex.message);
+            }
             if (jsonConfig && jsonConfig.tiles && Array.isArray(jsonConfig.tiles)) {
-                tileHelper.updateTiles(jsonConfig.tiles);
+                tileHelper.updateTiles(jsonConfig.tiles).then(function () {
+                    $('#statusText').text('Done!');
+                });
             }
         });
     }
@@ -20,7 +28,4 @@
     (new PersistedData()).load().then(function (configText) {
         $('#configTextarea').val(configText);
     });
-
-    $(":root").css("background-color", "yellow");
-    $(":root").css("background", "linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)");
 })();
