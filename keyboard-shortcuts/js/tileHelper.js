@@ -42,7 +42,7 @@ function TileHelper() {
         tile.visualElements.square150x150Logo = new Uri("ms-appx:///images/Square150x150Logo.png");
         tile.visualElements.wide310x150Logo = new Uri("ms-appx:///images/Wide310x150Logo.png");
         tile.visualElements.square310x310Logo = new Uri("ms-appx:///images/Wide310x150Logo.png"); // TODO: Set a picture of the right size
-        tile.visualElements.backgroundColor = Colors.purple;
+        tile.visualElements.backgroundColor = Colors.royalBlue;
         tile.visualElements.showNameOnSquare150x150Logo = true;
         tile.visualElements.showNameOnSquare310x310Logo = true;
         tile.visualElements.showNameOnWide310x150Logo = true;
@@ -63,85 +63,104 @@ function TileHelper() {
         tileUpdater.update(tileNotification);
     }
 
-    function createTileContent(tileJson) {
+    function createTileMedium(tileInfo) {
         var notifLib = Microsoft.Toolkit.Uwp.Notifications;
-        var tileContent = new notifLib.TileContent();
-        var tileVisual = new notifLib.TileVisual();
-
         var tileBinding = new notifLib.TileBinding();
         var tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
         tileBindingContentAdaptive.textStacking = notifLib.TileTextStacking.bottom;
 
         var adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.app;
+        adaptiveText.text = tileInfo.app;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.desc;
+        adaptiveText.text = tileInfo.desc;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.shortcut;
+        adaptiveText.text = tileInfo.shortcut;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.body;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         tileBinding.content = tileBindingContentAdaptive;
-        tileVisual.tileMedium = tileBinding;
+        tileBinding.displayName = 'shortcuts';
 
-        tileBinding = new notifLib.TileBinding();
-        tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
+        return tileBinding;
+    }
+
+    function createTileWide(tileInfo) {
+        var notifLib = Microsoft.Toolkit.Uwp.Notifications;
+        var tileBinding = new notifLib.TileBinding();
+        var tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
         tileBindingContentAdaptive.textStacking = notifLib.TileTextStacking.bottom;
 
-        adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.app;
+        var adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = tileInfo.app;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.desc;
+        adaptiveText.text = tileInfo.desc;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.base;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.shortcut;
+        adaptiveText.text = tileInfo.shortcut;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.body;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         tileBinding.content = tileBindingContentAdaptive;
-        tileVisual.tileWide = tileBinding;
+        tileBinding.displayName = 'shortcuts';
 
-        tileBinding = new notifLib.TileBinding();
-        tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
+        return tileBinding;
+    }
+
+    function createTileLarge(tileInfo) {
+        var notifLib = Microsoft.Toolkit.Uwp.Notifications;
+        var tileBinding = new notifLib.TileBinding();
+        var tileBindingContentAdaptive = new notifLib.TileBindingContentAdaptive();
         tileBindingContentAdaptive.textStacking = notifLib.TileTextStacking.center;
 
-        adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.app;
+        var adaptiveText = new notifLib.AdaptiveText();
+        adaptiveText.text = tileInfo.app;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.caption;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.desc;
+        adaptiveText.text = tileInfo.desc;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.base;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         adaptiveText = new notifLib.AdaptiveText();
-        adaptiveText.text = tileJson.shortcut;
+        adaptiveText.text = tileInfo.shortcut;
         adaptiveText.hintStyle = notifLib.AdaptiveTextStyle.title;
         adaptiveText.hintAlign = notifLib.AdaptiveTextAlign.center;
         tileBindingContentAdaptive.children.push(adaptiveText);
 
         tileBinding.content = tileBindingContentAdaptive;
-        tileVisual.tileLarge = tileBinding;
+        tileBinding.displayName = 'shortcuts';
+
+        return tileBinding;
+    }
+
+    function createTileContent(tileInfo) {
+        var notifLib = Microsoft.Toolkit.Uwp.Notifications;
+        var tileContent = new notifLib.TileContent();
+        var tileVisual = new notifLib.TileVisual();
+
+        tileVisual.tileMedium = createTileMedium(tileInfo);
+        tileVisual.tileWide = createTileWide(tileInfo);
+        tileVisual.tileLarge = createTileLarge(tileInfo);
 
         tileVisual.branding = notifLib.TileBranding.nameAndLogo;
         tileContent.visual = tileVisual;
