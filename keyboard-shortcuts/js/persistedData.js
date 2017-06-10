@@ -40,6 +40,6 @@
 
     return {
         load: load,
-        save: save,
+        save: save
     };
 }

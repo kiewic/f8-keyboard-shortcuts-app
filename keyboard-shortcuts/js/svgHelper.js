@@ -10,7 +10,7 @@
             ry: 3.837,
             height: 34.999,
             width: 82.51,
-            strokeWidth: 2.059,
+            strokeWidth: 2.059
         };
 
         var dimensions = 'rx="' + key.rx * multiplier + '" ry="' + key.ry * multiplier + '" y="' + key.y + '" x="' + key.y + '" height="' + key.height * multiplier + '" width="' + key.width * multiplier + '"';

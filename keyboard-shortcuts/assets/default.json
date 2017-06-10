@@ -1,6 +1,21 @@
 ﻿{
   "tiles": [
     {
+      "app": "VSCode",
+      "desc": "Fold",
+      "shortcut": "Ctrl + Shift + ["
+    },
+    {
+      "app": "VSCode",
+      "desc": "Unfold",
+      "shortcut": "Ctrl + Shift + ]"
+    },
+    {
+      "app": "VSCode",
+      "desc": "Go to matching bracket",
+      "shortcut": "Ctrl + Shift + \\"
+    },
+    {
       "app": "Chrome dev tools",
       "desc": "Toggle breakpoint",
       "shortcut": "CTRL + B"
@@ -9,11 +24,6 @@
       "app": "VSCode",
       "desc": "Go to next error",
       "shortcut": "F8"
-    },
-    {
-      "app": "VSCode",
-      "desc": "Go to matching bracket",
-      "shortcut": "Ctrl + Shift + \\"
     }
   ]
 }
