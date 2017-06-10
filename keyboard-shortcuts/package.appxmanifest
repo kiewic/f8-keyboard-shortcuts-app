@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="e0bbbd25-cca0-48f6-b924-236eb847b532" Version="1.0.0.0" Publisher="CN=gistanki" />
-  <mp:PhoneIdentity PhoneProductId="e0bbbd25-cca0-48f6-b924-236eb847b532" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="1588kiewic.com.F8Pinkeyboardshortcutstothestartmen" Version="1.1.0.0" Publisher="CN=5D147FB8-C538-4B90-8304-556DC65AA46B" />
+  <mp:PhoneIdentity PhoneProductId="d9589d34-2a65-46c2-9968-8975c337b417" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>keyboard-shorcuts</DisplayName>
-    <PublisherDisplayName>gistanki</PublisherDisplayName>
+    <DisplayName>F8: Pin keyboard shortcuts to the start menu</DisplayName>
+    <PublisherDisplayName>kiewic.com</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="index.html">
-      <uap:VisualElements DisplayName="keyboard-shorcuts" Description="keyboard-shorcuts" BackgroundColor="transparent" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
+      <uap:VisualElements DisplayName="F8: Pin keyboard shortcuts to the start menu" Description="keyboard-shorcuts" BackgroundColor="transparent" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" Square310x310Logo="images\LargeTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square310x310Logo" />
