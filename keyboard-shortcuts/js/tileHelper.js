@@ -96,6 +96,7 @@ function TileHelper() {
 
         tileBinding.content = tileBindingContentAdaptive;
         tileBinding.displayName = defaultDisplayName;
+        tileBinding.branding = notifLib.TileBranding.logo;
 
         return tileBinding;
     }
@@ -126,6 +127,7 @@ function TileHelper() {
 
         tileBinding.content = tileBindingContentAdaptive;
         tileBinding.displayName = defaultDisplayName;
+        tileBinding.branding = notifLib.TileBranding.logo;
 
         return tileBinding;
     }
@@ -156,6 +158,7 @@ function TileHelper() {
 
         tileBinding.content = tileBindingContentAdaptive;
         tileBinding.displayName = defaultDisplayName;
+        tileBinding.branding = notifLib.TileBranding.logo;
 
         return tileBinding;
     }
