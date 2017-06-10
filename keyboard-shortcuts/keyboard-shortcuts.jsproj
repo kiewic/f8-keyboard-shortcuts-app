@@ -85,7 +85,9 @@
     <Content Include="js\tileHelper.js" />
     <None Include="keyboard-shortcuts_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="keyboard-shortcuts_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +95,6 @@
       <HintPath>..\packages\Microsoft.Toolkit.Uwp.Notifications.JavaScript.1.4.1\lib\Windows\Microsoft.Toolkit.Uwp.Notifications.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
       <CopyLocal>True</CopyLocal>
-      <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
