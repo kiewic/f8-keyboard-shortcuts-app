@@ -33,7 +33,11 @@ function TileHelper() {
     }
 
     function getTileId(shortcut) {
-        return shortcut.replace(/[^a-z0-9]/ig, '').toLowerCase();
+        return shortcut
+            .replace(/[\s]/g, '')
+            .split('')
+            .map((item) => /^[0-9a-zA-Z+]$/.test(item) ? item : item.charCodeAt(0))
+            .join('');
     }
 
     function pinTileAsync(tileId, tileInfo) {
@@ -42,7 +46,7 @@ function TileHelper() {
         tile.displayName = "keyboard shortcuts";
         tile.visualElements.square150x150Logo = new Uri("ms-appx:///images/Square150x150Logo.png");
         tile.visualElements.wide310x150Logo = new Uri("ms-appx:///images/Wide310x150Logo.png");
-        tile.visualElements.square310x310Logo = new Uri("ms-appx:///images/Wide310x150Logo.png"); // TODO: Set a picture of the right size
+        tile.visualElements.square310x310Logo = new Uri("ms-appx:///images/LargeTile.png");
         tile.visualElements.backgroundColor = Colors.royalBlue;
         tile.visualElements.showNameOnSquare150x150Logo = true;
         tile.visualElements.showNameOnSquare310x310Logo = true;
@@ -51,6 +55,8 @@ function TileHelper() {
         var asyncOp = tile.requestCreateAsync();
         asyncOp.then(function () {
             return updateTile(tileId, tileInfo);
+        }, function (error) {
+            console.log(error);
         });
         return asyncOp;
     }
