@@ -53,8 +53,11 @@ function TileHelper() {
         tile.visualElements.showNameOnWide310x150Logo = true;
 
         var asyncOp = tile.requestCreateAsync();
-        asyncOp.then(function () {
-            return updateTile(tileId, tileInfo);
+        asyncOp.then(function (isCreated) {
+            if (isCreated) {
+                return updateTile(tileId, tileInfo);
+            }
+            return; // Secondary tile not pinned.
         }, function (error) {
             console.log(error);
         });
