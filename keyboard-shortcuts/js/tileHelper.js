@@ -1,7 +1,8 @@
 ﻿"use strict";
 
 function TileHelper() {
-    const defaultDisplayName = 'F8';
+    const defaultShortName = 'F8';
+    const defaultDisplayName = 'keyboard shortcuts';
     var SecondaryTile = Windows.UI.StartScreen.SecondaryTile;
     var Uri = Windows.Foundation.Uri;
     var Colors = Windows.UI.Colors;
@@ -41,13 +42,11 @@ function TileHelper() {
     }
 
     function pinTileAsync(tileId, tileInfo) {
-        var tile = new SecondaryTile(tileId);
-        tile.arguments = "args";
-        tile.displayName = "keyboard shortcuts";
-        tile.visualElements.square150x150Logo = new Uri("ms-appx:///images/Square150x150Logo.png");
+        var tile = new SecondaryTile(tileId, defaultDisplayName, 'args', new Uri("ms-appx:///images/Square150x150Logo.png"), Windows.UI.StartScreen.TileSize.wide310x150);
+        tile.defaultShortName = defaultShortName;
         tile.visualElements.wide310x150Logo = new Uri("ms-appx:///images/Wide310x150Logo.png");
         tile.visualElements.square310x310Logo = new Uri("ms-appx:///images/LargeTile.png");
-        tile.visualElements.backgroundColor = Colors.royalBlue;
+        //tile.visualElements.backgroundColor = Colors.royalBlue;
         tile.visualElements.showNameOnSquare150x150Logo = true;
         tile.visualElements.showNameOnSquare310x310Logo = true;
         tile.visualElements.showNameOnWide310x150Logo = true;
@@ -69,6 +68,11 @@ function TileHelper() {
 
         var xml = tileContent.getXml();
         var tileNotification = new TileNotification(xml);
+
+        // Set expiration time two years from now.
+        var expirationTime = new Date(new Date().getTime() + 63072000000);
+        tileNotification.expirationTime = expirationTime;
+
         var tileUpdater = TileUpdateManager.createTileUpdaterForSecondaryTile(tileId);
         tileUpdater.update(tileNotification);
     }
