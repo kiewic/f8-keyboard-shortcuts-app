@@ -53,7 +53,7 @@
     <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>keyboard-shortcuts_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>FCD862417756F89915C644119FB17AFB0880AF17</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>D0BED6238D54A03E4A649E395F8C8BF2B6624405</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
@@ -83,12 +83,12 @@
     <Content Include="js\persistedData.js" />
     <Content Include="js\svgHelper.js" />
     <Content Include="js\tileHelper.js" />
-    <None Include="keyboard-shortcuts_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
+    <None Include="keyboard-shortcuts_TemporaryKey.pfx" />
+    <None Include="keyboard-shortcuts_StoreKey.pfx" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="keyboard-shortcuts_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Uwp.Notifications">
